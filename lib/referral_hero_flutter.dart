@@ -5,63 +5,62 @@ class ReferralHeroFlutter {
   final String uuid;
 
   ReferralHeroFlutter(this.apiKey, this.uuid) {
-    // Initialize the platform with the apiKey and uuid
     ReferralHeroFlutterPlatform.instance.initialize(apiKey, uuid);
   }
 
-  static ReferralHeroFlutterPlatform get _platform =>
-      ReferralHeroFlutterPlatform.instance;
-
   Future<void> addSubscriber(Map<String, dynamic> subscriber) {
-    return _platform.addSubscriber(subscriber);
+    return ReferralHeroFlutterPlatform.instance.addSubscriber(subscriber);
   }
 
   Future<Map<String, dynamic>> getSubscriberDetails(String subscriberId) {
-    return _platform.getSubscriberDetails(subscriberId);
+    return ReferralHeroFlutterPlatform.instance
+        .getSubscriberDetails(subscriberId);
   }
 
   Future<void> updateSubscriber(
       String subscriberId, Map<String, dynamic> updates) {
-    return _platform.updateSubscriber(subscriberId, updates);
+    return ReferralHeroFlutterPlatform.instance
+        .updateSubscriber(subscriberId, updates);
   }
 
   Future<void> deleteSubscriber(String subscriberId) {
-    return _platform.deleteSubscriber(subscriberId);
+    return ReferralHeroFlutterPlatform.instance.deleteSubscriber(subscriberId);
   }
 
   Future<void> trackReferral(Map<String, dynamic> referral) {
-    return _platform.trackReferral(referral);
+    return ReferralHeroFlutterPlatform.instance.trackReferral(referral);
   }
 
   Future<void> captureShare(String subscriberId, String social) {
-    return _platform.captureShare(subscriberId, social);
+    return ReferralHeroFlutterPlatform.instance
+        .captureShare(subscriberId, social);
   }
 
   Future<List<dynamic>> getMyReferrals(String subscriberId) {
-    return _platform.getMyReferrals(subscriberId);
+    return ReferralHeroFlutterPlatform.instance.getMyReferrals(subscriberId);
   }
 
   Future<List<dynamic>> getLeaderboard() {
-    return _platform.getLeaderboard();
+    return ReferralHeroFlutterPlatform.instance.getLeaderboard();
   }
 
   Future<void> createPendingReferral(Map<String, dynamic> referral) {
-    return _platform.createPendingReferral(referral);
+    return ReferralHeroFlutterPlatform.instance.createPendingReferral(referral);
   }
 
   Future<void> organicTrackReferral(Map<String, dynamic> referral) {
-    return _platform.organicTrackReferral(referral);
+    return ReferralHeroFlutterPlatform.instance.organicTrackReferral(referral);
   }
 
   Future<void> confirmReferral(String subscriberId) {
-    return _platform.confirmReferral(subscriberId);
+    return ReferralHeroFlutterPlatform.instance.confirmReferral(subscriberId);
   }
 
   Future<List<dynamic>> getReferrer(Map<String, dynamic> query) {
-    return _platform.getReferrer(query);
+    return ReferralHeroFlutterPlatform.instance.getReferrer(query);
   }
 
   Future<List<dynamic>> getRewards(String subscriberId) {
-    return _platform.getRewards(subscriberId);
+    return ReferralHeroFlutterPlatform.instance.getRewards(subscriberId);
   }
 }
