@@ -31,7 +31,7 @@ flutter pub get
 
 ## Usage 
 
-# Initialization 
+### Initialization 
 
 To use the SDK, you need to initialize it with your API key and UUID:
 
@@ -43,7 +43,7 @@ final referralHeroService = ReferralHeroFlutter('your-api-key', 'your-uuid');
 
 ## Methods
 
-# Add Subscriber
+### Add Subscriber
 
 Adds a new subscriber.
 
@@ -57,7 +57,7 @@ final subscriber = {
 await referralHeroService.addSubscriber(subscriber);
 ```
 
-# Get Subscriber Details
+### Get Subscriber Details
 
 Fetches the details of a specific subscriber.
 
