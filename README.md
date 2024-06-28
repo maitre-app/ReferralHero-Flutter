@@ -1,6 +1,6 @@
 # ReferralHero Flutter SDK
 
-The ReferralHero Flutter SDK provides a simple way to integrate referral and contest functionality into your Flutter application. This SDK enables you to refer friends, track referrals, and incentivize user engagement.
+The **ReferralHero Flutter SDK** provides a simple way to integrate referral and contest functionality into your Flutter application. This SDK enables you to refer friends, track referrals, and incentivize user engagement.
 
 ## Features
 
@@ -19,9 +19,7 @@ Add the following dependency to your `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  referral_hero_flutter:
-    path: ../referral_hero_flutter # Adjust the path as needed
-  http: ^0.13.3
+  referral_hero_flutter: ^0.0.1 # Use the appropriate version from pub.dev
 ```
 
 Then run:
@@ -56,6 +54,35 @@ final subscriber = {
 };
 await referralHeroService.addSubscriber(subscriber);
 ```
+Request Body
+| Name | Type | Description |
+|----------|----------|----------|
+| email* | String | The email of the subscriber. Required if email is the unique identifier for the campaign. |
+| name | String | The name of the subscriber |
+| crypto_wallet_address* | String | The crypto wallet address. Required if it is the unique identifier for the campaign. |
+| phone_number* | String | The phone number of the subscriber. Required if phone number is the unique identifier for the campaign. |
+| extra_field | String | The extra field value of the subscriber |
+| extra_field_2 | String | The extra field 2 value of the subscriber |
+| referrer | String | The referral code or email of the referrer |
+| lifetime_spend | Number | Lifetime spend of the subscriber |
+| subscribe_page_url | String | Subscribe Page URL of the Subscriber |
+| landing_page_url | String | Landing Page URL of the Subscriber |
+| is_quick_add_referral | Boolean | Send True only if you want to add the referral as Quick Add Referral otherwise False |
+| option_field_value | String | Option field value of the subscriber |
+| other_identifier_value* | String | The other identifier value (Required if other identifier enabled as unique identifier) |
+| double_optin | Boolean | Send True if you want to send verification method before adding otherwise False |
+| points | Integer | Points of the subscriber |
+| crypto_wallet_provider | String | The crypto wallet provider |
+| screen_size | String | The screen size of device used by subscriber when the referral link was clicked |
+| ip_address | String | The IP address used by subscriber when the referral link was clicked |
+| device | String | The device used by subscriber when the referral link was clicked |
+| os_type | String | The Type of Operating system used by subscriber when the referral link was clicked |
+| source | String | The source of the subscriber. |
+| hosting_url | String | URL used to generate the referral link. |
+| transaction_id | String | The unique ID of the transaction. Useful when tracking purchases. |
+| conversion_category | String | The type of subscriber. Useful for creating reports or segmenting subscribers. |
+| conversion_value | Number | The monetary conversion value of the subscriber |
+
 
 ### Get Subscriber Details
 
