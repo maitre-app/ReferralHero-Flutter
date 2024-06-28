@@ -1,3 +1,4 @@
+import 'models/rh_subscriber.dart';
 import 'referral_hero_flutter_platform_interface.dart';
 
 class ReferralHeroFlutter {
@@ -8,13 +9,16 @@ class ReferralHeroFlutter {
     ReferralHeroFlutterPlatform.instance.initialize(apiKey, uuid);
   }
 
-  Future<Map<String, dynamic>> addSubscriber(Map<String, dynamic> subscriber) {
-    return ReferralHeroFlutterPlatform.instance.addSubscriber(subscriber);
+  Future<RHSubscriber> addSubscriber(Map<String, dynamic> subscriber) async {
+    final result =
+        await ReferralHeroFlutterPlatform.instance.addSubscriber(subscriber);
+    return RHSubscriber.fromJson(result['data']);
   }
 
-  Future<Map<String, dynamic>> getSubscriberDetails(String subscriberId) {
-    return ReferralHeroFlutterPlatform.instance
+  Future<RHSubscriber> getSubscriberDetails(String subscriberId) async {
+    final result = await ReferralHeroFlutterPlatform.instance
         .getSubscriberDetails(subscriberId);
+    return RHSubscriber.fromJson(result['data']);
   }
 
   Future<Map<String, dynamic>> updateSubscriber(
