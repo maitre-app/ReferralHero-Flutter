@@ -1,16 +1,56 @@
-# referral_hero_flutter_example
+# ReferralHero Flutter SDK Sample
 
-Demonstrates how to use the referral_hero_flutter plugin.
+This project provides a sample Flutter application demonstrating how to integrate and use the ReferralHero Flutter SDK. The SDK enables you to refer friends, track referrals, and incentivize user engagement within your Flutter application.
 
-## Getting Started
+## Features
 
-This project is a starting point for a Flutter application.
+- Add and manage subscribers
+- Track referrals and conversion events
+- Capture share events
+- Retrieve referral and leaderboard data
+- Create and manage pending referrals
+- Confirm referrals
+- Track organic referrals
+- Retrieve rewards and referrer details
 
-A few resources to get you started if this is your first Flutter project:
+## Installation
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Add the following dependency to your `pubspec.yaml` file:
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+```yaml
+dependencies:
+  referral_hero_flutter: ^0.0.1 # Use the appropriate version from pub.dev
+  http: ^0.13.3
+```
+
+Then run
+
+```shell
+flutter pub get
+```
+
+## Usage
+
+# Initialization
+
+To use the SDK, you need to initialize it with your API key and UUID:
+
+```dart
+import 'package:referral_hero_flutter/referral_hero_flutter.dart';
+
+final referralHeroService = ReferralHeroFlutter('your-api-key', 'your-uuid');
+```
+
+For detailed usage and examples, refer to the [documentation](https://support.referralhero.com/integrate/mobile-sdks/flutter).
+
+## Example
+
+See the full example in example/lib/main.dart for a complete usage demonstration.
+
+## License
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+## Support
+
+For any issues or feature requests, please open an issue on the [GitHub repository](https://github.com/maitre-app/ReferralHero-Flutter).
+For documentation and additional support, visit the [ReferralHero Support](https://support.referralhero.com/).
