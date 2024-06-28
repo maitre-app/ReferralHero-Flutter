@@ -48,7 +48,7 @@ For detailed usage and examples, refer to the [documentation](https://support.re
 See the full example in example/lib/main.dart for a complete usage demonstration.
 
 ## License
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License. See the [LICENSE](https://github.com/maitre-app/ReferralHero-Flutter/blob/main/LICENSE) file for details.
 
 ## Support
 
