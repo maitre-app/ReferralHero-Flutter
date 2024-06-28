@@ -25,7 +25,8 @@ class MethodChannelReferralHeroFlutter extends ReferralHeroFlutterPlatform {
   }
 
   @override
-  Future<void> addSubscriber(Map<String, dynamic> subscriber) async {
+  Future<Map<String, dynamic>> addSubscriber(
+      Map<String, dynamic> subscriber) async {
     final response = await http.post(
       Uri.parse('https://$_baseUrl/lists/$_uuid/subscribers'),
       headers: headers,
@@ -34,6 +35,7 @@ class MethodChannelReferralHeroFlutter extends ReferralHeroFlutterPlatform {
     if (response.statusCode != 200) {
       throw Exception('Failed to add subscriber');
     }
+    return json.decode(response.body);
   }
 
   @override
@@ -49,7 +51,7 @@ class MethodChannelReferralHeroFlutter extends ReferralHeroFlutterPlatform {
   }
 
   @override
-  Future<void> updateSubscriber(
+  Future<Map<String, dynamic>> updateSubscriber(
       String subscriberId, Map<String, dynamic> updates) async {
     final response = await http.patch(
       Uri.parse('https://$_baseUrl/lists/$_uuid/subscribers/$subscriberId'),
@@ -59,10 +61,11 @@ class MethodChannelReferralHeroFlutter extends ReferralHeroFlutterPlatform {
     if (response.statusCode != 200) {
       throw Exception('Failed to update subscriber');
     }
+    return json.decode(response.body);
   }
 
   @override
-  Future<void> deleteSubscriber(String subscriberId) async {
+  Future<Map<String, dynamic>> deleteSubscriber(String subscriberId) async {
     final response = await http.delete(
       Uri.parse('https://$_baseUrl/lists/$_uuid/subscribers/$subscriberId'),
       headers: headers,
@@ -70,10 +73,12 @@ class MethodChannelReferralHeroFlutter extends ReferralHeroFlutterPlatform {
     if (response.statusCode != 200) {
       throw Exception('Failed to delete subscriber');
     }
+    return json.decode(response.body);
   }
 
   @override
-  Future<void> trackReferral(Map<String, dynamic> referral) async {
+  Future<Map<String, dynamic>> trackReferral(
+      Map<String, dynamic> referral) async {
     final response = await http.post(
       Uri.parse(
           'https://$_baseUrl/lists/$_uuid/subscribers/track_referral_conversion_event'),
@@ -83,10 +88,12 @@ class MethodChannelReferralHeroFlutter extends ReferralHeroFlutterPlatform {
     if (response.statusCode != 200) {
       throw Exception('Failed to track referral');
     }
+    return json.decode(response.body);
   }
 
   @override
-  Future<void> captureShare(String subscriberId, String social) async {
+  Future<Map<String, dynamic>> captureShare(
+      String subscriberId, String social) async {
     final response = await http.post(
       Uri.parse(
           'https://$_baseUrl/lists/$_uuid/subscribers/$subscriberId/click_capture'),
@@ -96,6 +103,7 @@ class MethodChannelReferralHeroFlutter extends ReferralHeroFlutterPlatform {
     if (response.statusCode != 200) {
       throw Exception('Failed to capture share');
     }
+    return json.decode(response.body);
   }
 
   @override
@@ -124,7 +132,8 @@ class MethodChannelReferralHeroFlutter extends ReferralHeroFlutterPlatform {
   }
 
   @override
-  Future<void> createPendingReferral(Map<String, dynamic> referral) async {
+  Future<Map<String, dynamic>> createPendingReferral(
+      Map<String, dynamic> referral) async {
     final response = await http.post(
       Uri.parse('https://$_baseUrl/lists/$_uuid/subscribers/pending_referral'),
       headers: headers,
@@ -133,10 +142,12 @@ class MethodChannelReferralHeroFlutter extends ReferralHeroFlutterPlatform {
     if (response.statusCode != 200) {
       throw Exception('Failed to create pending referral');
     }
+    return json.decode(response.body);
   }
 
   @override
-  Future<void> organicTrackReferral(Map<String, dynamic> referral) async {
+  Future<Map<String, dynamic>> organicTrackReferral(
+      Map<String, dynamic> referral) async {
     final response = await http.post(
       Uri.parse(
           'https://$_baseUrl/lists/$_uuid/subscribers/organic_track_referral'),
@@ -146,10 +157,11 @@ class MethodChannelReferralHeroFlutter extends ReferralHeroFlutterPlatform {
     if (response.statusCode != 200) {
       throw Exception('Failed to track organic referral');
     }
+    return json.decode(response.body);
   }
 
   @override
-  Future<void> confirmReferral(String subscriberId) async {
+  Future<Map<String, dynamic>> confirmReferral(String subscriberId) async {
     final response = await http.post(
       Uri.parse(
           'https://$_baseUrl/lists/$_uuid/subscribers/$subscriberId/confirm'),
@@ -158,6 +170,7 @@ class MethodChannelReferralHeroFlutter extends ReferralHeroFlutterPlatform {
     if (response.statusCode != 200) {
       throw Exception('Failed to confirm referral');
     }
+    return json.decode(response.body);
   }
 
   @override

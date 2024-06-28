@@ -27,7 +27,7 @@ abstract class ReferralHeroFlutterPlatform extends PlatformInterface {
     throw UnimplementedError('initialize() has not been implemented.');
   }
 
-  Future<void> addSubscriber(Map<String, dynamic> subscriber) {
+  Future<Map<String, dynamic>> addSubscriber(Map<String, dynamic> subscriber) {
     throw UnimplementedError('addSubscriber() has not been implemented.');
   }
 
@@ -36,20 +36,21 @@ abstract class ReferralHeroFlutterPlatform extends PlatformInterface {
         'getSubscriberDetails() has not been implemented.');
   }
 
-  Future<void> updateSubscriber(
+  Future<Map<String, dynamic>> updateSubscriber(
       String subscriberId, Map<String, dynamic> updates) {
     throw UnimplementedError('updateSubscriber() has not been implemented.');
   }
 
-  Future<void> deleteSubscriber(String subscriberId) {
+  Future<Map<String, dynamic>> deleteSubscriber(String subscriberId) {
     throw UnimplementedError('deleteSubscriber() has not been implemented.');
   }
 
-  Future<void> trackReferral(Map<String, dynamic> referral) {
+  Future<Map<String, dynamic>> trackReferral(Map<String, dynamic> referral) {
     throw UnimplementedError('trackReferral() has not been implemented.');
   }
 
-  Future<void> captureShare(String subscriberId, String social) {
+  Future<Map<String, dynamic>> captureShare(
+      String subscriberId, String social) {
     throw UnimplementedError('captureShare() has not been implemented.');
   }
 
@@ -61,17 +62,19 @@ abstract class ReferralHeroFlutterPlatform extends PlatformInterface {
     throw UnimplementedError('getLeaderboard() has not been implemented.');
   }
 
-  Future<void> createPendingReferral(Map<String, dynamic> referral) {
+  Future<Map<String, dynamic>> createPendingReferral(
+      Map<String, dynamic> referral) {
     throw UnimplementedError(
         'createPendingReferral() has not been implemented.');
   }
 
-  Future<void> organicTrackReferral(Map<String, dynamic> referral) {
+  Future<Map<String, dynamic>> organicTrackReferral(
+      Map<String, dynamic> referral) {
     throw UnimplementedError(
         'organicTrackReferral() has not been implemented.');
   }
 
-  Future<void> confirmReferral(String subscriberId) {
+  Future<Map<String, dynamic>> confirmReferral(String subscriberId) {
     throw UnimplementedError('confirmReferral() has not been implemented.');
   }
 
