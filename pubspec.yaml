@@ -2,6 +2,9 @@ name: referral_hero_flutter
 description: "A new Flutter plugin project."
 version: 0.0.1
 homepage: https://github.com/maitre-app/ReferralHero-Flutter
+repository: https://github.com/maitre-app/ReferralHero-Flutter
+issue_tracker: https://github.com/maitre-app/ReferralHero-Flutter/issues
+documentation: https://support.referralhero.com/
 
 environment:
   sdk: '>=3.4.3 <4.0.0'
