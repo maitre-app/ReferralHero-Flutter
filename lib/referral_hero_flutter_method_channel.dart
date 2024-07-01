@@ -35,7 +35,11 @@ class MethodChannelReferralHeroFlutter extends ReferralHeroFlutterPlatform {
     if (response.statusCode != 200) {
       throw Exception('Failed to add subscriber');
     }
-    return json.decode(response.body);
+    final result = json.decode(response.body);
+    if (result['status'] == 'error') {
+      throw Exception('${result['message']}');
+    }
+    return result;
   }
 
   @override
@@ -47,7 +51,11 @@ class MethodChannelReferralHeroFlutter extends ReferralHeroFlutterPlatform {
     if (response.statusCode != 200) {
       throw Exception('Failed to fetch subscriber details');
     }
-    return json.decode(response.body);
+    final result = json.decode(response.body);
+    if (result['status'] == 'error') {
+      throw Exception('${result['message']}');
+    }
+    return result;
   }
 
   @override
@@ -61,7 +69,11 @@ class MethodChannelReferralHeroFlutter extends ReferralHeroFlutterPlatform {
     if (response.statusCode != 200) {
       throw Exception('Failed to update subscriber');
     }
-    return json.decode(response.body);
+    final result = json.decode(response.body);
+    if (result['status'] == 'error') {
+      throw Exception('${result['message']}');
+    }
+    return result;
   }
 
   @override
@@ -70,10 +82,14 @@ class MethodChannelReferralHeroFlutter extends ReferralHeroFlutterPlatform {
       Uri.parse('https://$_baseUrl/lists/$_uuid/subscribers/$subscriberId'),
       headers: headers,
     );
-    if (response.statusCode != 200) {
-      throw Exception('Failed to delete subscriber');
+    // if (response.statusCode != 200) {
+    //   throw Exception('Failed to delete subscriber');
+    // }
+    final result = json.decode(response.body);
+    if (result['status'] == 'error') {
+      throw Exception('${result['message']}');
     }
-    return json.decode(response.body);
+    return result;
   }
 
   @override
@@ -85,10 +101,11 @@ class MethodChannelReferralHeroFlutter extends ReferralHeroFlutterPlatform {
       headers: headers,
       body: json.encode(referral),
     );
-    if (response.statusCode != 200) {
-      throw Exception('Failed to track referral');
+    final result = json.decode(response.body);
+    if (result['status'] == 'error') {
+      throw Exception('${result['message']}');
     }
-    return json.decode(response.body);
+    return result;
   }
 
   @override
@@ -100,35 +117,38 @@ class MethodChannelReferralHeroFlutter extends ReferralHeroFlutterPlatform {
       headers: headers,
       body: json.encode({'social': social}),
     );
-    if (response.statusCode != 200) {
-      throw Exception('Failed to capture share');
+    final result = json.decode(response.body);
+    if (result['status'] == 'error') {
+      throw Exception('${result['message']}');
     }
-    return json.decode(response.body);
+    return result;
   }
 
   @override
-  Future<List<dynamic>> getMyReferrals(String subscriberId) async {
+  Future<Map<String, dynamic>> getMyReferrals(String subscriberId) async {
     final response = await http.get(
       Uri.parse(
           'https://$_baseUrl/lists/$_uuid/subscribers/$subscriberId/referrals_data'),
       headers: headers,
     );
-    if (response.statusCode != 200) {
-      throw Exception('Failed to fetch referrals');
+    final result = json.decode(response.body);
+    if (result['status'] == 'error') {
+      throw Exception('${result['message']}');
     }
-    return json.decode(response.body);
+    return result;
   }
 
   @override
-  Future<List<dynamic>> getLeaderboard() async {
+  Future<Map<String, dynamic>> getLeaderboard() async {
     final response = await http.get(
       Uri.parse('https://$_baseUrl/lists/$_uuid/leaderboard'),
       headers: headers,
     );
-    if (response.statusCode != 200) {
-      throw Exception('Failed to fetch leaderboard');
+    final result = json.decode(response.body);
+    if (result['status'] == 'error') {
+      throw Exception('${result['message']}');
     }
-    return json.decode(response.body);
+    return result;
   }
 
   @override
@@ -139,10 +159,11 @@ class MethodChannelReferralHeroFlutter extends ReferralHeroFlutterPlatform {
       headers: headers,
       body: json.encode(referral),
     );
-    if (response.statusCode != 200) {
-      throw Exception('Failed to create pending referral');
+    final result = json.decode(response.body);
+    if (result['status'] == 'error') {
+      throw Exception('${result['message']}');
     }
-    return json.decode(response.body);
+    return result;
   }
 
   @override
@@ -154,10 +175,11 @@ class MethodChannelReferralHeroFlutter extends ReferralHeroFlutterPlatform {
       headers: headers,
       body: json.encode(referral),
     );
-    if (response.statusCode != 200) {
-      throw Exception('Failed to track organic referral');
+    final result = json.decode(response.body);
+    if (result['status'] == 'error') {
+      throw Exception('${result['message']}');
     }
-    return json.decode(response.body);
+    return result;
   }
 
   @override
@@ -167,34 +189,38 @@ class MethodChannelReferralHeroFlutter extends ReferralHeroFlutterPlatform {
           'https://$_baseUrl/lists/$_uuid/subscribers/$subscriberId/confirm'),
       headers: headers,
     );
-    if (response.statusCode != 200) {
-      throw Exception('Failed to confirm referral');
+    final result = json.decode(response.body);
+    if (result['status'] == 'error') {
+      throw Exception('${result['message']}');
     }
-    return json.decode(response.body);
+    return result;
   }
 
   @override
-  Future<List<dynamic>> getReferrer(Map<String, dynamic> query) async {
-    final uri = Uri.https(_baseUrl.replaceAll("https://", ""),
-        '/lists/$_uuid/subscribers/referrer', query);
+  Future<Map<String, dynamic>> getReferrer(Map<String, dynamic> query) async {
+    final uri = Uri.parse(
+        'https://$_baseUrl/lists/$_uuid/subscribers/referrer?${Uri(queryParameters: query).query}');
 
     final response = await http.get(uri, headers: headers);
-    if (response.statusCode != 200) {
-      throw Exception('Failed to get referrer');
+
+    final result = json.decode(response.body);
+    if (result['status'] == 'error') {
+      throw Exception('${result['message']}');
     }
-    return json.decode(response.body);
+    return result;
   }
 
   @override
-  Future<List<dynamic>> getRewards(String subscriberId) async {
+  Future<Map<String, dynamic>> getRewards(String subscriberId) async {
     final response = await http.get(
       Uri.parse(
           'https://$_baseUrl/lists/$_uuid/subscribers/$subscriberId/rewards'),
       headers: headers,
     );
-    if (response.statusCode != 200) {
-      throw Exception('Failed to get rewards');
+    final result = json.decode(response.body);
+    if (result['status'] == 'error') {
+      throw Exception('${result['message']}');
     }
-    return json.decode(response.body);
+    return result;
   }
 }

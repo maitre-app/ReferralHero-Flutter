@@ -21,10 +21,11 @@ class ReferralHeroFlutter {
     return RHSubscriber.fromJson(result['data']);
   }
 
-  Future<Map<String, dynamic>> updateSubscriber(
-      String subscriberId, Map<String, dynamic> updates) {
-    return ReferralHeroFlutterPlatform.instance
+  Future<RHSubscriber> updateSubscriber(
+      String subscriberId, Map<String, dynamic> updates) async {
+    final result = await ReferralHeroFlutterPlatform.instance
         .updateSubscriber(subscriberId, updates);
+    return RHSubscriber.fromJson(result['data']);
   }
 
   Future<Map<String, dynamic>> deleteSubscriber(String subscriberId) {
@@ -41,11 +42,11 @@ class ReferralHeroFlutter {
         .captureShare(subscriberId, social);
   }
 
-  Future<List<dynamic>> getMyReferrals(String subscriberId) {
+  Future<Map<String, dynamic>> getMyReferrals(String subscriberId) {
     return ReferralHeroFlutterPlatform.instance.getMyReferrals(subscriberId);
   }
 
-  Future<List<dynamic>> getLeaderboard() {
+  Future<Map<String, dynamic>> getLeaderboard() {
     return ReferralHeroFlutterPlatform.instance.getLeaderboard();
   }
 
@@ -63,11 +64,11 @@ class ReferralHeroFlutter {
     return ReferralHeroFlutterPlatform.instance.confirmReferral(subscriberId);
   }
 
-  Future<List<dynamic>> getReferrer(Map<String, dynamic> query) {
+  Future<Map<String, dynamic>> getReferrer(Map<String, dynamic> query) {
     return ReferralHeroFlutterPlatform.instance.getReferrer(query);
   }
 
-  Future<List<dynamic>> getRewards(String subscriberId) {
+  Future<Map<String, dynamic>> getRewards(String subscriberId) {
     return ReferralHeroFlutterPlatform.instance.getRewards(subscriberId);
   }
 }

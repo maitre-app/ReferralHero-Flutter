@@ -15,7 +15,7 @@ class RHSubscriber {
   final String code;
   final int position;
   final bool referred;
-  final Map<String, dynamic> referredBy;
+  final Map<String, dynamic>? referredBy;
   final int pendingReferrals;
   final int unconfirmedReferrals;
   final int peopleReferred;
@@ -24,7 +24,7 @@ class RHSubscriber {
   final bool promoted;
   final DateTime? promotedAt;
   final bool verified;
-  final DateTime verifiedAt;
+  final DateTime? verifiedAt;
   final int points;
   final int riskLevel;
   final String host;
@@ -101,7 +101,9 @@ class RHSubscriber {
       code: json['code'],
       position: json['position'],
       referred: json['referred'],
-      referredBy: json['referred_by'],
+      referredBy: json['referred_by'] != null
+          ? Map<String, dynamic>.from(json['referred_by'])
+          : null,
       pendingReferrals: json['pending_referrals'],
       unconfirmedReferrals: json['unconfirmed_referrals'],
       peopleReferred: json['people_referred'],
@@ -112,7 +114,9 @@ class RHSubscriber {
           ? DateTime.fromMillisecondsSinceEpoch(json['promoted_at'])
           : null,
       verified: json['verified'],
-      verifiedAt: DateTime.fromMillisecondsSinceEpoch(json['verified_at']),
+      verifiedAt: json['verified_at'] != null
+          ? DateTime.fromMillisecondsSinceEpoch(json['verified_at'])
+          : null,
       points: json['points'],
       riskLevel: json['risk_level'],
       host: json['host'],

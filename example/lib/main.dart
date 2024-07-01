@@ -30,21 +30,26 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   late ReferralHeroFlutter _referralHeroService;
 
+  final apiKey = "API_KEY";
+  final uuid = "UUID";
+
   @override
   void initState() {
     super.initState();
-    _referralHeroService = ReferralHeroFlutter('your-api-key', 'your-uuid');
+    _referralHeroService = ReferralHeroFlutter(apiKey, uuid);
   }
 
   Future<void> _addSubscriber() async {
     final subscriber = {
-      'email': 'test24@gmail.com',
-      'name': 'Test User 24',
-      'phone_number': '9898989896',
+      'email': 'test28@gmail.com',
+      'name': 'Test User 28',
+      'phone_number': '+15307236355',
+      'hosting_url': 'test.com'
     };
     try {
-      await _referralHeroService.addSubscriber(subscriber);
-      debugPrint('Subscriber added successfully');
+      var result = await _referralHeroService.addSubscriber(subscriber);
+      debugPrint(
+          'Subscriber added successfully: ${result.id} ${result.name} ${result.email}');
     } catch (error) {
       debugPrint('Failed to add subscriber: $error');
     }
@@ -54,7 +59,8 @@ class _MyHomePageState extends State<MyHomePage> {
     try {
       final details =
           await _referralHeroService.getSubscriberDetails('subscriberId');
-      debugPrint('Subscriber details: $details');
+      debugPrint(
+          'Subscriber details: ${details.id} ${details.name} ${details.email}');
     } catch (error) {
       debugPrint('Failed to fetch subscriber details: $error');
     }
@@ -65,8 +71,11 @@ class _MyHomePageState extends State<MyHomePage> {
       'name': 'Updated Name',
     };
     try {
-      await _referralHeroService.updateSubscriber('subscriberId', updates);
-      debugPrint('Subscriber updated successfully');
+      var result =
+          await _referralHeroService.updateSubscriber('subscriberId', updates);
+
+      debugPrint(
+          'Subscriber updated successfully: ${result.id} ${result.name} ${result.email}');
     } catch (error) {
       debugPrint('Failed to update subscriber: $error');
     }
@@ -74,7 +83,10 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Future<void> _deleteSubscriber() async {
     try {
-      await _referralHeroService.deleteSubscriber('subscriberId');
+      var result = await _referralHeroService.deleteSubscriber('subscriberId');
+      if (result['status'] == 'error') {
+        throw Exception(result['message']);
+      }
       debugPrint('Subscriber deleted successfully');
     } catch (error) {
       debugPrint('Failed to delete subscriber: $error');
@@ -83,11 +95,14 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Future<void> _trackReferral() async {
     final referral = {
-      'email': 'test17@gmail.com',
-      'name': 'Test name updated',
+      'email': 'test@test.com',
+      'name': 'Updated Name',
     };
     try {
-      await _referralHeroService.trackReferral(referral);
+      var result = await _referralHeroService.trackReferral(referral);
+      if (result['status'] == 'error') {
+        throw Exception(result['message']);
+      }
       debugPrint('Referral tracked successfully');
     } catch (error) {
       debugPrint('Failed to track referral: $error');
@@ -96,7 +111,11 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Future<void> _captureShare() async {
     try {
-      await _referralHeroService.captureShare('subscriberId', 'facebook');
+      var result =
+          await _referralHeroService.captureShare('subscriberId', 'facebook');
+      if (result['status'] == 'error') {
+        throw Exception(result['message']);
+      }
       debugPrint('Share captured successfully');
     } catch (error) {
       debugPrint('Failed to capture share: $error');
@@ -128,7 +147,10 @@ class _MyHomePageState extends State<MyHomePage> {
       'name': 'Pending User',
     };
     try {
-      await _referralHeroService.createPendingReferral(referral);
+      var result = await _referralHeroService.createPendingReferral(referral);
+      if (result['status'] == 'error') {
+        throw Exception(result['message']);
+      }
       debugPrint('Pending referral created successfully');
     } catch (error) {
       debugPrint('Failed to create pending referral: $error');
@@ -141,7 +163,10 @@ class _MyHomePageState extends State<MyHomePage> {
       'name': 'Organic User',
     };
     try {
-      await _referralHeroService.organicTrackReferral(referral);
+      var result = await _referralHeroService.organicTrackReferral(referral);
+      if (result['status'] == 'error') {
+        throw Exception(result['message']);
+      }
       debugPrint('Organic referral tracked successfully');
     } catch (error) {
       debugPrint('Failed to track organic referral: $error');
@@ -150,7 +175,10 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Future<void> _confirmReferral() async {
     try {
-      await _referralHeroService.confirmReferral('subscriberId');
+      var result = await _referralHeroService.confirmReferral('subscriberId');
+      if (result['status'] == 'error') {
+        throw Exception(result['message']);
+      }
       debugPrint('Referral confirmed successfully');
     } catch (error) {
       debugPrint('Failed to confirm referral: $error');
@@ -188,62 +216,64 @@ class _MyHomePageState extends State<MyHomePage> {
         title: const Text('Referral Hero Flutter Example'),
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            ElevatedButton(
-              onPressed: _addSubscriber,
-              child: const Text('Add Subscriber'),
-            ),
-            ElevatedButton(
-              onPressed: _getSubscriberDetails,
-              child: const Text('Get Subscriber Details'),
-            ),
-            ElevatedButton(
-              onPressed: _updateSubscriber,
-              child: const Text('Update Subscriber'),
-            ),
-            ElevatedButton(
-              onPressed: _deleteSubscriber,
-              child: const Text('Delete Subscriber'),
-            ),
-            ElevatedButton(
-              onPressed: _trackReferral,
-              child: const Text('Track Referral'),
-            ),
-            ElevatedButton(
-              onPressed: _captureShare,
-              child: const Text('Capture Share'),
-            ),
-            ElevatedButton(
-              onPressed: _getMyReferrals,
-              child: const Text('Get My Referrals'),
-            ),
-            ElevatedButton(
-              onPressed: _getLeaderboard,
-              child: const Text('Get Leaderboard'),
-            ),
-            ElevatedButton(
-              onPressed: _createPendingReferral,
-              child: const Text('Create Pending Referral'),
-            ),
-            ElevatedButton(
-              onPressed: _organicTrackReferral,
-              child: const Text('Organic Track Referral'),
-            ),
-            ElevatedButton(
-              onPressed: _confirmReferral,
-              child: const Text('Confirm Referral'),
-            ),
-            ElevatedButton(
-              onPressed: _getReferrer,
-              child: const Text('Get Referrer'),
-            ),
-            ElevatedButton(
-              onPressed: _getRewards,
-              child: const Text('Get Rewards'),
-            ),
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              ElevatedButton(
+                onPressed: _addSubscriber,
+                child: const Text('Add Subscriber'),
+              ),
+              ElevatedButton(
+                onPressed: _getSubscriberDetails,
+                child: const Text('Get Subscriber Details'),
+              ),
+              ElevatedButton(
+                onPressed: _updateSubscriber,
+                child: const Text('Update Subscriber'),
+              ),
+              ElevatedButton(
+                onPressed: _deleteSubscriber,
+                child: const Text('Delete Subscriber'),
+              ),
+              ElevatedButton(
+                onPressed: _trackReferral,
+                child: const Text('Track Referral'),
+              ),
+              ElevatedButton(
+                onPressed: _captureShare,
+                child: const Text('Capture Share'),
+              ),
+              ElevatedButton(
+                onPressed: _getMyReferrals,
+                child: const Text('Get My Referrals'),
+              ),
+              ElevatedButton(
+                onPressed: _getLeaderboard,
+                child: const Text('Get Leaderboard'),
+              ),
+              ElevatedButton(
+                onPressed: _createPendingReferral,
+                child: const Text('Create Pending Referral'),
+              ),
+              ElevatedButton(
+                onPressed: _organicTrackReferral,
+                child: const Text('Organic Track Referral'),
+              ),
+              ElevatedButton(
+                onPressed: _confirmReferral,
+                child: const Text('Confirm Referral'),
+              ),
+              ElevatedButton(
+                onPressed: _getReferrer,
+                child: const Text('Get Referrer'),
+              ),
+              ElevatedButton(
+                onPressed: _getRewards,
+                child: const Text('Get Rewards'),
+              ),
+            ],
+          ),
         ),
       ),
     );

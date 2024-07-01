@@ -54,11 +54,11 @@ abstract class ReferralHeroFlutterPlatform extends PlatformInterface {
     throw UnimplementedError('captureShare() has not been implemented.');
   }
 
-  Future<List<dynamic>> getMyReferrals(String subscriberId) {
+  Future<Map<String, dynamic>> getMyReferrals(String subscriberId) {
     throw UnimplementedError('getMyReferrals() has not been implemented.');
   }
 
-  Future<List<dynamic>> getLeaderboard() {
+  Future<Map<String, dynamic>> getLeaderboard() {
     throw UnimplementedError('getLeaderboard() has not been implemented.');
   }
 
@@ -78,11 +78,11 @@ abstract class ReferralHeroFlutterPlatform extends PlatformInterface {
     throw UnimplementedError('confirmReferral() has not been implemented.');
   }
 
-  Future<List<dynamic>> getReferrer(Map<String, dynamic> query) {
+  Future<Map<String, dynamic>> getReferrer(Map<String, dynamic> query) {
     throw UnimplementedError('getReferrer() has not been implemented.');
   }
 
-  Future<List<dynamic>> getRewards(String subscriberId) {
+  Future<Map<String, dynamic>> getRewards(String subscriberId) {
     throw UnimplementedError('getRewards() has not been implemented.');
   }
 }
