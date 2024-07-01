@@ -5,13 +5,13 @@
 Pod::Spec.new do |s|
   s.name             = 'referral_hero_flutter'
   s.version          = '0.0.1'
-  s.summary          = 'A new Flutter plugin project.'
+  s.summary          = 'A Flutter plugin for integrating ReferralHero API.'
   s.description      = <<-DESC
-A new Flutter plugin project.
+A Flutter plugin for integrating ReferralHero API to manage referrals, contests, and rewards in your mobile applications.
                        DESC
-  s.homepage         = 'http://example.com'
+  s.homepage         = 'https://github.com/maitre-app/ReferralHero-Flutter'
   s.license          = { :file => '../LICENSE' }
-  s.author           = { 'Your Company' => 'email@example.com' }
+  s.author           = { 'ReferralHero' => 'lamar@referralhero.com' }
   s.source           = { :path => '.' }
   s.source_files = 'Classes/**/*'
   s.dependency 'Flutter'
