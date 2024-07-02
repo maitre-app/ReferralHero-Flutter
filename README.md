@@ -94,7 +94,7 @@ final details = await referralHeroService.getSubscriberDetails('subscriberId');
 
 ### Update Subscriber
 
-Updates the details of a specific subscriber.
+Updates the details of a specific subscriber. You can reference the parameters from the "Add Subscriber" section for available fields.
 
 ```dart
 final updates = {
