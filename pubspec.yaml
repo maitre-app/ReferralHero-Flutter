@@ -4,7 +4,7 @@ version: 0.0.2
 homepage: https://github.com/maitre-app/ReferralHero-Flutter
 repository: https://github.com/maitre-app/ReferralHero-Flutter
 issue_tracker: https://github.com/maitre-app/ReferralHero-Flutter/issues
-documentation: https://support.referralhero.com/
+documentation: https://support.referralhero.com/integrate/mobile-sdks/flutter-sdk
 
 environment:
   sdk: '>=3.4.3 <4.0.0'
