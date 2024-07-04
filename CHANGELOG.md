@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.0.2] - 2024-07-02
+### Added
+- Introduced DeviceInfo for tracking device-related information.
+- Added support for fetching device type, IP address, operating system type, and screen size.
+
+### Changed
+- Updated parameter host_url to domain in addSubscriber and updateSubscriber methods.
+
+### Deprecated
+- N/A
+
+### Removed
+- N/A
+
+### Fixed
+- N/A
+
+### Security
+- N/A
+
 ## [0.0.1] - 2024-06-26
 ### Added
 - Initial release of `referral_hero_flutter`.

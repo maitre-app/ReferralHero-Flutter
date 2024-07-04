@@ -39,12 +39,25 @@ class _MyHomePageState extends State<MyHomePage> {
     _referralHeroService = ReferralHeroFlutter(apiKey, uuid);
   }
 
+  String transformResolution(String input) {
+    final dimensions = input.split('*').map((e) => e.trim()).toList();
+    return '${dimensions[0]} x ${dimensions[1]}';
+  }
+
   Future<void> _addSubscriber() async {
     final subscriber = {
       'email': 'test28@gmail.com',
       'name': 'Test User 28',
       'phone_number': '+15307236355',
-      'hosting_url': 'test.com'
+      'domain': 'test.com',
+      'device':
+          _referralHeroService.deviceInfo.getDeviceType(), // Get device type
+      'ip_address':
+          _referralHeroService.deviceInfo.getIpAddress(), // Get IP address
+      'os_type': _referralHeroService.deviceInfo
+          .getOperatingSystem(), // Get operating system type
+      'screen_size': transformResolution(
+          await _referralHeroService.deviceInfo.getDeviceScreenSize())
     };
     try {
       var result = await _referralHeroService.addSubscriber(subscriber);

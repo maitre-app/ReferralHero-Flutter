@@ -1,15 +1,21 @@
+import 'models/device_info.dart';
 import 'models/rh_subscriber.dart';
 import 'referral_hero_flutter_platform_interface.dart';
 
 class ReferralHeroFlutter {
   final String apiKey;
   final String uuid;
+  final DeviceInfo deviceInfo = DeviceInfo();
 
   ReferralHeroFlutter(this.apiKey, this.uuid) {
     ReferralHeroFlutterPlatform.instance.initialize(apiKey, uuid);
   }
 
   Future<RHSubscriber> addSubscriber(Map<String, dynamic> subscriber) async {
+    // Update the 'domain' param to 'host_url'
+    if (subscriber.containsKey('domain')) {
+      subscriber['host_url'] = subscriber.remove('domain');
+    }
     final result =
         await ReferralHeroFlutterPlatform.instance.addSubscriber(subscriber);
     return RHSubscriber.fromJson(result['data']);
@@ -23,6 +29,10 @@ class ReferralHeroFlutter {
 
   Future<RHSubscriber> updateSubscriber(
       String subscriberId, Map<String, dynamic> updates) async {
+    // Update the 'domain' param to 'host_url'
+    if (updates.containsKey('domain')) {
+      updates['host_url'] = updates.remove('domain');
+    }
     final result = await ReferralHeroFlutterPlatform.instance
         .updateSubscriber(subscriberId, updates);
     return RHSubscriber.fromJson(result['data']);
@@ -52,11 +62,17 @@ class ReferralHeroFlutter {
 
   Future<Map<String, dynamic>> createPendingReferral(
       Map<String, dynamic> referral) {
+    if (referral.containsKey('domain')) {
+      referral['host_url'] = referral.remove('domain');
+    }
     return ReferralHeroFlutterPlatform.instance.createPendingReferral(referral);
   }
 
   Future<Map<String, dynamic>> organicTrackReferral(
       Map<String, dynamic> referral) {
+    if (referral.containsKey('domain')) {
+      referral['host_url'] = referral.remove('domain');
+    }
     return ReferralHeroFlutterPlatform.instance.organicTrackReferral(referral);
   }
 

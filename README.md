@@ -19,7 +19,7 @@ Add the following dependency to your `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  referral_hero_flutter: ^0.0.1 # Use the appropriate version from pub.dev
+  referral_hero_flutter: ^0.0.2 # Use the appropriate version from pub.dev
 ```
 
 Then run:
@@ -38,6 +38,43 @@ import 'package:referral_hero_flutter/referral_hero_flutter.dart';
 
 final referralHeroService = ReferralHeroFlutter('your-api-key', 'your-uuid');
 ```
+
+### Tracking Referrals
+
+Now that you have implemented the SDK, you can start identifying and tracking referrals!
+
+For that, you will need 2 things:
+- Universal Link
+- Your Integrated App
+The RH SDK pulls information from your device, like this:
+```dart
+final referralParams = {
+  'email': 'user@example.com', // Capture this from user
+  'domain': 'https://a.domain.co/', // Optional value, and set as default by admin
+  'name': 'User Name', // Capture this from user
+  'referrer': 'referrerCode', // Optional value, only necessary if you want to capture the referrer code from user
+  'uuid': 'MFcd4113d4bf', // Get this from RH Dashboard
+  'device': referralHeroService.deviceInfo.getDeviceType(), // Get device type
+  'ip_address': referralHeroService.deviceInfo.getIpAddress(), // Get IP address
+  'os_type': referralHeroService.deviceInfo.getOperatingSystem(), // Get operating system type
+  'screen_size': referralHeroService.deviceInfo.getDeviceScreenSize() // Get screen size
+};
+```
+The format for screen sizes is not native to RH, and the format should be parsed to RH accepted, such as:
+```dart
+String transformResolution(String input) {
+  final dimensions = input.split('*').map((e) => e.trim()).toList();
+  return '${dimensions[0]} x ${dimensions[1]}';
+}
+```
+With this information, you should be able to add the subscriber data, with the Get Referrer, Add Subscriber, Create Pending Referral, or Track Referral methods to automatically identify or track a referral:
+```dart
+void formSubmit() {
+  referralHeroService.addSubscriber(referralParams);
+}
+```
+To further understand the implementation of these methods, please check the Public Methods section and our GitHub Sample Project.
+
 
 ## Methods
 
@@ -78,7 +115,7 @@ Request Body
 | device | String | The device used by subscriber when the referral link was clicked |
 | os_type | String | The Type of Operating system used by subscriber when the referral link was clicked |
 | source | String | The source of the subscriber. |
-| hosting_url | String | URL used to generate the referral link. |
+| domain | String | URL used to generate the referral link. |
 | transaction_id | String | The unique ID of the transaction. Useful when tracking purchases. |
 | conversion_category | String | The type of subscriber. Useful for creating reports or segmenting subscribers. |
 | conversion_value | Number | The monetary conversion value of the subscriber |
