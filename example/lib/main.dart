@@ -40,8 +40,11 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   String transformResolution(String input) {
-    final dimensions = input.split('*').map((e) => e.trim()).toList();
-    return '${dimensions[0]} x ${dimensions[1]}';
+    if (input.contains("*")) {
+      final dimensions = input.split('*').map((e) => e.trim()).toList();
+      return '${dimensions[0]} x ${dimensions[1]}';
+    }
+    return input;
   }
 
   Future<void> _addSubscriber() async {
@@ -50,15 +53,16 @@ class _MyHomePageState extends State<MyHomePage> {
       'name': 'Test User 28',
       'phone_number': '+15307236355',
       'domain': 'test.com',
-      'device':
-          _referralHeroService.deviceInfo.getDeviceType(), // Get device type
-      'ip_address':
-          _referralHeroService.deviceInfo.getIpAddress(), // Get IP address
-      'os_type': _referralHeroService.deviceInfo
+      'device': await _referralHeroService.deviceInfo
+          .getDeviceType(), // Get device type
+      'ip_address': await _referralHeroService.deviceInfo
+          .getIpAddress(), // Get IP address
+      'os_type': await _referralHeroService.deviceInfo
           .getOperatingSystem(), // Get operating system type
       'screen_size': transformResolution(
           await _referralHeroService.deviceInfo.getDeviceScreenSize())
     };
+    print(subscriber);
     try {
       var result = await _referralHeroService.addSubscriber(subscriber);
       debugPrint(

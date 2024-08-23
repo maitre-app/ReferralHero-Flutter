@@ -19,7 +19,7 @@ Add the following dependency to your `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  referral_hero_flutter: ^0.0.2 # Use the appropriate version from pub.dev
+  referral_hero_flutter: ^0.0.3 # Use the appropriate version from pub.dev
 ```
 
 Then run:
@@ -54,10 +54,10 @@ final referralParams = {
   'name': 'User Name', // Capture this from user
   'referrer': 'referrerCode', // Optional value, only necessary if you want to capture the referrer code from user
   'uuid': 'MFcd4113d4bf', // Get this from RH Dashboard
-  'device': referralHeroService.deviceInfo.getDeviceType(), // Get device type
-  'ip_address': referralHeroService.deviceInfo.getIpAddress(), // Get IP address
-  'os_type': referralHeroService.deviceInfo.getOperatingSystem(), // Get operating system type
-  'screen_size': referralHeroService.deviceInfo.getDeviceScreenSize() // Get screen size
+  'device': await referralHeroService.deviceInfo.getDeviceType(), // Get device type
+  'ip_address': await referralHeroService.deviceInfo.getIpAddress(), // Get IP address
+  'os_type': await referralHeroService.deviceInfo.getOperatingSystem(), // Get operating system type
+  'screen_size': await referralHeroService.deviceInfo.getDeviceScreenSize() // Get screen size
 };
 ```
 The format for screen sizes is not native to RH, and the format should be parsed to RH accepted, such as:

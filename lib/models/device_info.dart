@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 class DeviceInfo {
   final DeviceInfoPlugin deviceInfoPlugin = DeviceInfoPlugin();
@@ -24,18 +25,21 @@ class DeviceInfo {
 
   Future<String?> getIpAddress() async {
     try {
-      for (var interface in await NetworkInterface.list()) {
-        for (var address in interface.addresses) {
-          if (address.type == InternetAddressType.IPv4) {
-            return address.address;
-          }
-        }
+      const url = 'https://api.ipify.org';
+      final response = await http.get(Uri.parse(url));
+
+      if (response.statusCode == 200) {
+        return response.body;
+      } else {
+        debugPrint(
+            'Failed to retrieve IP. Status code: ${response.statusCode}');
+        debugPrint('Response body: ${response.body}');
+        return null;
       }
     } catch (e) {
-      debugPrint(e.toString());
-      return 'Unknown';
+      debugPrint('Error fetching public IP: $e');
+      return null;
     }
-    return null;
   }
 
   Future<String> getOperatingSystem() async {

@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.0.3] - 2024-08-23
+### Fixed
+- Updated the IP address retrieval module to correctly fetch the public IP address instead of the local IP address.
+
+
 ## [0.0.2] - 2024-07-02
 ### Added
 - Introduced DeviceInfo for tracking device-related information.

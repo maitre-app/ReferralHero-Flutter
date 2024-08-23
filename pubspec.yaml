@@ -1,6 +1,6 @@
 name: referral_hero_flutter
 description: "A Flutter plugin for integrating ReferralHero API to manage referrals, contests, and rewards in your mobile applications."
-version: 0.0.2
+version: 0.0.3
 homepage: https://github.com/maitre-app/ReferralHero-Flutter
 repository: https://github.com/maitre-app/ReferralHero-Flutter
 issue_tracker: https://github.com/maitre-app/ReferralHero-Flutter/issues
