@@ -20,11 +20,13 @@ class DeviceInfo {
   Future<String> getDeviceType() async {
     try {
       if (Platform.isAndroid) {
-        AndroidDeviceInfo androidInfo = await deviceInfoPlugin.androidInfo;
-        return androidInfo.model;
+        return "Android";
+        // AndroidDeviceInfo androidInfo = await deviceInfoPlugin.androidInfo;
+        // return androidInfo.model;
       } else if (Platform.isIOS) {
-        IosDeviceInfo iosInfo = await deviceInfoPlugin.iosInfo;
-        return iosInfo.utsname.machine;
+        return "iPhone";
+        // IosDeviceInfo iosInfo = await deviceInfoPlugin.iosInfo;
+        // return iosInfo.utsname.machine;
       }
     } catch (e) {
       debugPrint('Error getting device type: $e');
@@ -74,9 +76,11 @@ class DeviceInfo {
   /// If an error occurs, it returns 'Unknown'.
   Future<String> getDeviceScreenSize() async {
     try {
-      final view = WidgetsBinding.instance.platformDispatcher.views.first;
-      final width = view.physicalSize.width;
-      final height = view.physicalSize.height;
+      final size = MediaQueryData.fromView(
+              WidgetsBinding.instance.platformDispatcher.views.first)
+          .size;
+      final width = size.width;
+      final height = size.height;
       return '${width.toInt()} x ${height.toInt()}';
     } catch (e) {
       debugPrint('Error getting screen size: $e');

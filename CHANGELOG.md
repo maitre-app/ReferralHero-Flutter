@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.0.5] - 2024-08-23
+### Fixed
+- Updated getDeviceType and getDeviceScreenSize.
+
 ## [0.0.4] - 2024-08-23
 ### Added
 - Introduced detailed Dartdoc comments for all public API elements, including the `DeviceInfo` class and its methods, to improve documentation coverage.
