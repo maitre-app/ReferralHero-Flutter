@@ -1,12 +1,11 @@
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:referral_hero_flutter/referral_hero_flutter_method_channel.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
-  MethodChannelReferralHeroFlutter platform =
-      MethodChannelReferralHeroFlutter();
+  // MethodChannelReferralHeroFlutter platform =
+  //     MethodChannelReferralHeroFlutter();
   const MethodChannel channel = MethodChannel('referral_hero_flutter');
 
   setUp(() {

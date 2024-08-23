@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.0.4] - 2024-08-23
+### Added
+- Introduced detailed Dartdoc comments for all public API elements, including the `DeviceInfo` class and its methods, to improve documentation coverage.
+- Documented the `deviceInfoPlugin` field within the `DeviceInfo` class.
+
 ## [0.0.3] - 2024-08-23
 ### Fixed
 - Updated the IP address retrieval module to correctly fetch the public IP address instead of the local IP address.

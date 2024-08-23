@@ -1,45 +1,129 @@
+/// Represents a subscriber in the ReferralHero system.
+///
+/// This class encapsulates all the necessary details about a subscriber,
+/// including personal information, referral status, and associated metadata.
 class RHSubscriber {
+  /// The unique identifier of the subscriber.
   final String id;
+
+  /// The name of the subscriber.
   final String name;
+
+  /// The email address of the subscriber.
   final String email;
+
+  /// The phone number of the subscriber.
   final String phoneNumber;
+
+  /// The crypto wallet address of the subscriber.
   final String cryptoWalletAddress;
+
+  /// The provider of the subscriber's crypto wallet.
   final String cryptoWalletProvider;
+
+  /// The value of any additional identifier associated with the subscriber.
   final String otherIdentifierValue;
+
+  /// An extra field associated with the subscriber.
   final String extraField;
+
+  /// A second extra field associated with the subscriber.
   final String extraField2;
+
+  /// A third extra field associated with the subscriber.
   final String extraField3;
+
+  /// A fourth extra field associated with the subscriber.
   final String extraField4;
+
+  /// An optional field associated with the subscriber.
   final String optionField;
+
+  /// The monetary conversion amount associated with the subscriber.
   final double conversionAmount;
+
+  /// The referral code associated with the subscriber.
   final String code;
+
+  /// The subscriber's position in a leaderboard or ranking system.
   final int position;
+
+  /// Whether the subscriber has been referred by another user.
   final bool referred;
+
+  /// A map containing information about the subscriber's referrer, if any.
   final Map<String, dynamic>? referredBy;
+
+  /// The number of pending referrals for the subscriber.
   final int pendingReferrals;
+
+  /// The number of unconfirmed referrals for the subscriber.
   final int unconfirmedReferrals;
+
+  /// The number of people referred by the subscriber.
   final int peopleReferred;
+
+  /// The number of confirmed level 2 referrals.
   final int level2ConfirmedReferrals;
+
+  /// The number of confirmed level 3 referrals.
   final int level3ConfirmedReferrals;
+
+  /// Whether the subscriber has been promoted in the system.
   final bool promoted;
+
+  /// The date and time when the subscriber was promoted.
   final DateTime? promotedAt;
+
+  /// Whether the subscriber has been verified in the system.
   final bool verified;
+
+  /// The date and time when the subscriber was verified.
   final DateTime? verifiedAt;
+
+  /// The number of points accumulated by the subscriber.
   final int points;
+
+  /// The risk level associated with the subscriber.
   final int riskLevel;
+
+  /// The host associated with the subscriber.
   final String host;
+
+  /// The source through which the subscriber was acquired.
   final String? source;
+
+  /// The device used by the subscriber.
   final String? device;
+
+  /// The referral link associated with the subscriber.
   final String referralLink;
+
+  /// The date and time when the subscriber was created.
   final DateTime createdAt;
+
+  /// The date and time when the subscriber's information was last updated.
   final DateTime lastUpdatedAt;
+
+  /// The operating system type of the subscriber's device.
   final String? osType;
+
+  /// The screen size of the subscriber's device.
   final String? screenSize;
+
+  /// The IP address of the subscriber's device.
   final String? ipAddress;
+
+  /// The universal link associated with the subscriber.
   final String universalLink;
+
+  /// The status of the subscriber in the system.
   final String status;
+
+  /// The response received after processing the subscriber's data.
   final String response;
 
+  /// Creates a new `RHSubscriber` instance with the specified details.
   RHSubscriber({
     required this.id,
     required this.name,
@@ -83,6 +167,7 @@ class RHSubscriber {
     required this.response,
   });
 
+  /// Creates a new `RHSubscriber` instance from a JSON object.
   factory RHSubscriber.fromJson(Map<String, dynamic> json) {
     return RHSubscriber(
       id: json['id'],

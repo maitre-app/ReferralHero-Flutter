@@ -39,12 +39,12 @@ class _MyHomePageState extends State<MyHomePage> {
     _referralHeroService = ReferralHeroFlutter(apiKey, uuid);
   }
 
-  String transformResolution(String input) {
-    if (input.contains("*")) {
+  String transformResolution(String? input) {
+    if (input != null && input.contains("*")) {
       final dimensions = input.split('*').map((e) => e.trim()).toList();
       return '${dimensions[0]} x ${dimensions[1]}';
     }
-    return input;
+    return input ?? "";
   }
 
   Future<void> _addSubscriber() async {
@@ -62,7 +62,7 @@ class _MyHomePageState extends State<MyHomePage> {
       'screen_size': transformResolution(
           await _referralHeroService.deviceInfo.getDeviceScreenSize())
     };
-    print(subscriber);
+    debugPrint("$subscriber");
     try {
       var result = await _referralHeroService.addSubscriber(subscriber);
       debugPrint(

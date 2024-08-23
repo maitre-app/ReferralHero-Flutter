@@ -2,6 +2,31 @@
 
 The **ReferralHero Flutter SDK** provides a simple way to integrate referral and contest functionality into your Flutter application. This SDK enables you to refer friends, track referrals, and incentivize user engagement.
 
+## Table of Contents
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+    - [Initialization](#initialization)
+    - [Tracking Referrals](#tracking-referrals)
+- [Methods](#methods)
+    - [Add Subscriber](#add-subscriber)
+    - [Get Subscriber Details](#get-subscriber-details)
+    - [Update Subscriber](#update-subscriber)
+    - [Delete Subscriber](#delete-subscriber)
+    - [Track Referral](#track-referral)
+    - [Capture Share](#capture-share)
+    - [Get My Referrals](#get-my-referrals)
+    - [Get Leaderboard](#get-leaderboard)
+    - [Create Pending Referral](#create-pending-referral)
+    - [Organic Track Referral](#organic-track-referral)
+    - [Confirm Referral](#confirm-referral)
+    - [Get Referrer](#get-referrer)
+    - [Get Rewards](#get-rewards)
+- [Example](#example)
+- [License](#license)
+- [Support](#support)
+
+
 ## Features
 
 - Add and manage subscribers
@@ -19,7 +44,7 @@ Add the following dependency to your `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  referral_hero_flutter: ^0.0.3 # Use the appropriate version from pub.dev
+  referral_hero_flutter: ^0.0.4 # Use the appropriate version from pub.dev
 ```
 
 Then run:
@@ -27,9 +52,9 @@ Then run:
 flutter pub get
 ```
 
-## Usage 
+## Usage
 
-### Initialization 
+### Initialization
 
 To use the SDK, you need to initialize it with your API key and UUID:
 
